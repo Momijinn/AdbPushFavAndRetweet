@@ -4,12 +4,17 @@ AmazonDashButton(ADB)が押されるとTwitterにてお気に入りとリツイ�
 ## 確認動作環境
 * Nodejs v4.2.6
 
-
 ## 必要なモジュール
 ```bash
 npm install twitter
 npm install node-dash-button
 ```
+
+## 仕様
+* ボタンを押されたら"お気に入り"と"リツイート"をする
+* ついでにフォローしていないフォロワーをフォローする
+* 巻き込みお気に入りとリツイートを避けるために@(アットマーク)がついているツイートは除外する
+
 
 ## プログラム
 AdbPushFavAndRetweet.jsについて
