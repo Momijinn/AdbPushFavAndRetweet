@@ -22,7 +22,8 @@ dash.on('detected', () => {
 
 //HomeTimeLineのフォローとリツイート
 function GetHomeTimeLine(client){
-    client.get('statuses/home_timeline', function(error, tweets, response) {
+    var params = {exclude_replies: true, count:50};
+    client.get('statuses/home_timeline', params,function(error, tweets, response) {
         if (!error) {
             Object.keys(tweets).forEach(function(key) {
             var val = this[key];
@@ -34,7 +35,7 @@ function GetHomeTimeLine(client){
             var Retweeted = obj['retweeted'];
 
 
-            if (!Text.match(/@/i)) { //リツイートのものは除去
+            if (!Text.match(/RT @/)) { //リツイートのものは除去
                 //お気に入り
                 if(Favorited == false){
                     client.post('favorites/create', {id: Id}, function(error, response){
@@ -58,7 +59,7 @@ function GetHomeTimeLine(client){
 
 //ユーザータイムラインからのフォローとリツイート
 function GetUserTimeLine(client, screenname){
-    var params = {screen_name: screenname};
+    var params = {screen_name: screenname, exclude_replies: true, count:50};
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
           Object.keys(tweets).forEach(function(key) {
@@ -71,7 +72,7 @@ function GetUserTimeLine(client, screenname){
             var Retweeted = obj['retweeted'];
 
 
-            if (!Text.match(/@/i)) { //リツイートのものは除去
+            if (!Text.match(/RT @/)) { //リツイートのものは除去
                 //お気に入り
                 if(Favorited == false){
                     client.post('favorites/create', {id: Id}, function(error, response){
