@@ -1,26 +1,32 @@
-# AdbPushFavAndRetweet
-AmazonDashButton(ADB)が押されるとTwitterにてお気に入りとリツイートがされるプログラム
+AdbPushFavAndRetweet
+====
+AmazonDashButton(ADB)が押されるとTwitterにてお気に入りとリツイートがされるアプリケーション
 
-## 確認動作環境
+## Description
+ADBを押すとRaspberryPiが押すイベントを受取り、最新のTwitterタイムラインのツイートに対して"いいね"とリツイートを行う。
+
+その後、フォロワーが増えていればフォローをする。
+
+## Requirement
 * Nodejs v4.2.6
 
-## 必要なモジュール
-```bash
-npm install twitter
-npm install node-dash-button
-```
+* Install Library
+    ```bash
+    npm install twitter
+    npm install node-dash-button
+    ```
 
-## 仕様
-* ボタンを押されたら"お気に入り"と"リツイート"をする
-* ついでにフォローしていないフォロワーをフォローする
-* 巻き込みお気に入りとリツイートを避けるために@(アットマーク)がついているツイートは除外する
+* [Twitter API](https://apps.twitter.com/)
 
+## Usage
+1. run program
+    ```bash
+    $ sudo node AdbPushFavAndRetweet.jp
+    ```
+2. 好きなときにADBを押す
 
-## プログラム
-AdbPushFavAndRetweet.jsについて
-
-※TwitterのToken等とADBのIPアドレスが入手できている前提で記述します
-
+## Install
+AdbPushFavAndRetweet.jsの書き換え
 ```javascript
 //Twitterのkey,secret,tokenを記述
 var client = new Twitter({
@@ -47,5 +53,12 @@ dash.on('detected', () => {
     GetHomeTimeLine(client);
 
 });
-
 ```
+
+## Licence
+This software is released under the MIT License, see LICENSE.
+
+## Author
+[Twitter](https://twitter.com/momijinn_aka)
+
+[Blog](http://www.autumn-color.com/)
